@@ -13,7 +13,9 @@
 </head>
 <body>
     <h1>D3 Tooltip Box - Demo</h1>
-    <svg></svg>
+    <div class="wrapper">
+        <svg></svg>
+    </div>
 
     <script src="node_modules/d3/d3.js"></script>
     <script src="build/d3-tooltip-box.js"></script>
@@ -41,6 +43,7 @@
 
         // Alternative 3
         var tooltip = d3TooltipBox.tooltip()
+                .parent(d3.select('.wrapper'))
                 .template(function(d) {
                     return '<div>Amount: '+ d.value +'</div>';
                 });
@@ -57,10 +60,6 @@
                 .attr("width", 140)
                 .attr("height", 140)
                 .call(tooltip.bind());
-
-        var div = d3.select("body").append("div")
-                .attr("class", "tooltip")
-                .style("display", "none");
     </script>
 </body>
 </html>

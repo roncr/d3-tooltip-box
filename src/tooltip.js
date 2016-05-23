@@ -1,23 +1,25 @@
-import { formatPx, compileTemplate, isFunction } from './utils';
+import { formatPx, compileTemplate, isFunction, isD3Selection } from './utils';
 
 // Inspired by on http://bl.ocks.org/mbostock/1087001
 class Tooltip {
     constructor() {
         this._tooltipClass = 'd3-tooltip-box';
         this._transitionSpeed = 200;
+        this._parent = d3.select('body');
         this._dataAccessor = (d) => d.value;
         this._template = "<div>${value}</div>";
+    }
 
-        // Gets/Creates tooltip
+    _initTooltip () {
         let tooltipEl = d3.select(`.${this._tooltipClass}`);
         if(tooltipEl.empty()) {
             tooltipEl = this._createTooltip();
         }
-        this._tooltipEl = tooltipEl;
+        return tooltipEl;
     }
 
     _createTooltip () {
-        return d3.select('body').append('div')
+        return this.parent().append('div')
             .attr('class', this._tooltipClass)
             .style({
                 opacity: 0,
@@ -33,6 +35,18 @@ class Tooltip {
             var data = this._dataAccessor(d);
             return compileTemplate(template, data);
         }
+    }
+
+    parent(v) {
+        if(arguments.length == 0) {
+            return this._parent;
+        }
+
+        if (!isD3Selection(v)) {
+            v = d3.select(v);
+        }
+        this._parent = v;
+        return this;
     }
 
     data(v) {
@@ -54,6 +68,10 @@ class Tooltip {
     }
 
     show(d) {
+        if(!this._tooltipEl) {
+            this._tooltipEl = this._initTooltip();
+        }
+
         let html = this._getContent(d);
 
         this._tooltipEl

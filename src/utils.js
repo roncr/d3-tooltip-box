@@ -14,3 +14,7 @@ export function compileTemplate (template, data) {
 export function isFunction (obj) {
     return typeof obj === 'function';
 }
+
+export function isD3Selection (obj) {
+    return obj instanceof d3.selection;
+}

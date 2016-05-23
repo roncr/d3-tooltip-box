@@ -10,9 +10,9 @@ Flexible D3 plugin to build legendary tooltips.
 
 ### Basic
 
-The basic usage consists on creating a tooltip instance and them binding the tooltip to a SVG node(s). In order to create a new tooltip instance use `d3TooltipBox.tooltip()` then you can use the method `.data(...)` in order to define a data accessor (see more details below). The default template needs an object with the property `value` as output.
+The basic usage consists on creating a tooltip instance and them binding the tooltip to a SVG node(s). In order to create a new tooltip instance use `d3TooltipBox.tooltip()` then you can use the method `.data(...)` in order to define a data accessor. The default template needs an object with the property `value` as output.
 
-Once the initial configuration is completed, you can bind the tooltip to an SVG node by doing `.call(tooltip.bind())`.
+Once the initial configuration is completed, you can bind the tooltip to an SVG node by doing `.call(tooltip.bind())`. Check the [API Reference](#api-reference) for more.
 
 Example:
 
@@ -38,7 +38,7 @@ var svg = d3.select("svg")
 
 ### Static Custom Template
 
-You can provide a custom template by using the `.template(...)` method in combination with the `.data(...)` method.
+You can provide a custom template by using the `.template(...)` method in combination with the `.data(...)` method. Check the [API Reference](#api-reference) for more.
 
 ```javascript
 var tooltip = d3TooltipBox.tooltip()
@@ -53,7 +53,7 @@ var tooltip = d3TooltipBox.tooltip()
 
 ### Dynamic Custom Template
 
-In order to build the tooltip on the fly, you can use the `.template(...)` method and provide a function, the function will be invoked with the data managed by D3 for the nodes.
+In order to build the tooltip on the fly, you can use the `.template(...)` method and provide a function, the function will be invoked with the data managed by D3 for the nodes. Check the [API Reference](#api-reference) for more.
 
 ```javascript
 var tooltip = d3TooltipBox.tooltip()
@@ -77,3 +77,7 @@ Specifies how to extract a value from the associated data. *accessor* is a funct
 Specifies the template to be used, if *template* is a **string**, it is considered a static template, meaning the structure is not going to change, only the values shown by it, the static template can use the syntax *${propertyName}* to define placeholders, the static template will be compiled using the data defined through the `.data(...)` method, the name properties used in the template must match the properties in the data object in order to be compiled properly. The static templates are convenient for less and more easy to read code.
 
 If *template* is a **function**, it is considered a dynamic template that can change in content and structure, the function will be invoked with data attached to node as D3 always does, hence this function as to define an HTML output that will be placed verbatim in the tooltip.
+
+<a name="pie" href="#pie">#</a> tooltip().<b>parent</b>(node)
+
+Specifies the parent node of the tooltip, the default is `<body>`. This could be a [d3.selection](https://github.com/d3/d3/wiki/Selections#d3_select) or a selection from [document.querySelector](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector)
