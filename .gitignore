@@ -1,0 +1,12 @@
+/* OS & IDE */
+.DS_Store
+.idea
+
+/* Logs */
+*.logs
+
+/* Libs */
+node_modules
+
+/* Auto-generated */
+build
