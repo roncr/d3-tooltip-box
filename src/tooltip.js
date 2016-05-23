@@ -3,11 +3,14 @@ import { formatPx, compileTemplate, isFunction, isD3Selection } from './utils';
 // Inspired by on http://bl.ocks.org/mbostock/1087001
 class Tooltip {
     constructor() {
+        this._DEFAULT_POSITION_OFFSET = {left: 0, top: -30};
+
         this._tooltipClass = 'd3-tooltip-box';
         this._transitionSpeed = 200;
         this._parent = d3.select('body');
         this._dataAccessor = (d) => d.value;
         this._template = "<div>${value}</div>";
+        this._positionOffset = this._DEFAULT_POSITION_OFFSET;
     }
 
     _initTooltip () {
@@ -49,6 +52,15 @@ class Tooltip {
         return this;
     }
 
+    positionOffset(v) {
+        if(arguments.length == 0) {
+            return this._positionOffset;
+        }
+
+        this._positionOffset = Object.assign({}, this._DEFAULT_POSITION_OFFSET, v);
+        return this;
+    }
+
     data(v) {
         if(arguments.length == 0) {
             return this._dataAccessor;
@@ -85,8 +97,8 @@ class Tooltip {
     move() {
         this._tooltipEl
             .style({
-                left: formatPx(d3.event.pageX + 5),
-                top: formatPx(d3.event.pageY - 32)
+                left: formatPx(d3.event.pageX + this._positionOffset.left),
+                top: formatPx(d3.event.pageY + this._positionOffset.top)
             });
     }
 

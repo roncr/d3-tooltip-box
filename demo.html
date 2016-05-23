@@ -44,6 +44,7 @@
         // Alternative 3
         var tooltip = d3TooltipBox.tooltip()
                 .parent(d3.select('.wrapper'))
+                .positionOffset({left: 5})
                 .template(function(d) {
                     return '<div>Amount: '+ d.value +'</div>';
                 });

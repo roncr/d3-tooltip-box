@@ -64,20 +64,24 @@ var tooltip = d3TooltipBox.tooltip()
 
 ## API Reference
 
-<a name="pie" href="#pie">#</a> d3TooltipBox.<b>tooltip</b>()
+<a name="tooltip" href="#pie">#</a> d3TooltipBox.<b>tooltip</b>()
 
 Constructs a new tooltip with the default values for template and data accessor. If a tooltip already exists, reuses that tooltip. The default template is `<div>${value}<div>` and the default data accessor is `function(d) { return d.value; }`.
 
-<a name="pie" href="#pie">#</a> tooltip().<b>data</b>([accessor])
+<a name="data" href="#data">#</a> tooltip().<b>data</b>([accessor])
 
 Specifies how to extract a value from the associated data. *accessor* is a function invoked with the data attached to a given element, if using a static template, the output of this accessor must be a **plain object** (not child objects are allowed yet) where the properties map to the placeholders used in the static template. If *accessor* is not specified, returns the current data accessor.
 
-<a name="pie" href="#pie">#</a> tooltip().<b>template</b>([template])
+<a name="template" href="#template">#</a> tooltip().<b>template</b>([template])
 
 Specifies the template to be used, if *template* is a **string**, it is considered a static template, meaning the structure is not going to change, only the values shown by it, the static template can use the syntax *${propertyName}* to define placeholders, the static template will be compiled using the data defined through the `.data(...)` method, the name properties used in the template must match the properties in the data object in order to be compiled properly. The static templates are convenient for less and more easy to read code.
 
-If *template* is a **function**, it is considered a dynamic template that can change in content and structure, the function will be invoked with data attached to node as D3 always does, hence this function as to define an HTML output that will be placed verbatim in the tooltip.
+If *template* is a **function**, it is considered a dynamic template that can change in content and structure, the function will be invoked with data attached to node as D3 always does, hence this function as to define an HTML output that will be placed verbatim in the tooltip. If *template* is not provided, returns the current template.
 
-<a name="pie" href="#pie">#</a> tooltip().<b>parent</b>(node)
+<a name="parent" href="#parent">#</a> tooltip().<b>parent</b>([node])
 
-Specifies the parent node of the tooltip, the default is `<body>`. This could be a [d3.selection](https://github.com/d3/d3/wiki/Selections#d3_select) or a selection from [document.querySelector](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector)
+Specifies the parent node of the tooltip, the default is `<body>`. *node* could be a [d3.selection](https://github.com/d3/d3/wiki/Selections#d3_select) or a selection from [document.querySelector](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector). If *node* is not specified, returns the current parent.
+
+<a name="positionOffset" href="#positionOffset">#</a> tooltip().<b>positionOffset</b>([offset])
+
+Specifies the offset of the tooltip relative to the mouse position, *offset* is an object containing the *left* and *top* properties with numeric values. The default is `{left: 0, top: -30}`. If *offset* is not specified, returns the current offset.
