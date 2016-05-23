@@ -1,6 +1,4 @@
-function formatPx(value){
-    return `${value}px`;
-}
+import { formatPx, compileTemplate } from './utils';
 
 // Inspired by on http://bl.ocks.org/mbostock/1087001
 class Tooltip {
@@ -27,17 +25,7 @@ class Tooltip {
             });
     }
 
-    _compileTemplate (template, data) {
-        for(let prop in data) {
-            var regex = new RegExp(`\\$\\{${prop}\\}`, 'gi');
-            template = template.replace(regex, data[prop]);
-        }
-
-        return template;
-    }
-
     data(v) {
-        console.log('data');
         if(arguments.length == 0) {
             return this._dataAccessor;
         }
@@ -48,8 +36,8 @@ class Tooltip {
 
     show(d) {
         var data = this._dataAccessor(d),
-            html = this._compileTemplate(this._template, data);
-        console.log(data);
+            html = compileTemplate(this._template, data);
+
         this._tooltipEl
             .html(html);
 
@@ -79,7 +67,7 @@ class Tooltip {
             selection.each(function(data) {
                 var element = d3.select(this);
 
-                element.on('mouseover.d3-tooltip-box', (d) => { console.log('mouse over'); self.show(d); })
+                element.on('mouseover.d3-tooltip-box', (d) => { self.show(d); })
                     .on('mousemove.d3-tooltip-box', () => { self.move(); })
                     .on('mouseleave.d3-tooltip-box', () => { self.hide(); });
             });
