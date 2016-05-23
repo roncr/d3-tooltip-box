@@ -22,7 +22,12 @@
         var width = 960,
                 height = 500;
 
-        var tooltip = d3TooltipBox.tooltip();
+        var tooltip = d3TooltipBox.tooltip()
+                .data(function() {
+                    return {
+                        value: 20
+                    }
+                });
 
         var svg = d3.select("svg")
                 .attr("width", width)
