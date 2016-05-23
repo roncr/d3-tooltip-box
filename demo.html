@@ -22,11 +22,27 @@
         var width = 960,
                 height = 500;
 
+//        // Alternative 1
+//        var tooltip = d3TooltipBox.tooltip()
+//                .data(function() {
+//                    return {
+//                        value: 20
+//                    }
+//                });
+
+//        // Alternative 2
+//        var tooltip = d3TooltipBox.tooltip()
+//                .data(function() {
+//                    return {
+//                        value: 20
+//                    }
+//                })
+//                .template('<div>Value: ${value}</div>');
+
+        // Alternative 3
         var tooltip = d3TooltipBox.tooltip()
-                .data(function() {
-                    return {
-                        value: 20
-                    }
+                .template(function(d) {
+                    return '<div>Amount: '+ d.value +'</div>';
                 });
 
         var svg = d3.select("svg")
@@ -35,7 +51,9 @@
 
         svg.append("g")
                 .attr("transform", "translate(480,50) rotate(60) scale(2)")
-                .append("rect")
+                .selectAll('rect')
+                .data([{value: 100}])
+                .enter().append("rect")
                 .attr("width", 140)
                 .attr("height", 140)
                 .call(tooltip.bind());

@@ -1,4 +1,4 @@
-import { formatPx, compileTemplate } from './utils';
+import { formatPx, compileTemplate, isFunction } from './utils';
 
 // Inspired by on http://bl.ocks.org/mbostock/1087001
 class Tooltip {
@@ -25,6 +25,16 @@ class Tooltip {
             });
     }
 
+    _getContent (d) {
+        var template = this._template;
+        if(isFunction(template)) {
+            return template(d);
+        } else {
+            var data = this._dataAccessor(d);
+            return compileTemplate(template, data);
+        }
+    }
+
     data(v) {
         if(arguments.length == 0) {
             return this._dataAccessor;
@@ -34,9 +44,17 @@ class Tooltip {
         return this;
     }
 
+    template(v) {
+        if(arguments.length == 0) {
+            return this._template;
+        }
+
+        this._template = v;
+        return this;
+    }
+
     show(d) {
-        var data = this._dataAccessor(d),
-            html = compileTemplate(this._template, data);
+        let html = this._getContent(d);
 
         this._tooltipEl
             .html(html);
@@ -49,8 +67,8 @@ class Tooltip {
     move() {
         this._tooltipEl
             .style({
-                left: formatPx(d3.event.pageX),
-                top: formatPx(d3.event.pageY - 28)
+                left: formatPx(d3.event.pageX + 5),
+                top: formatPx(d3.event.pageY - 32)
             });
     }
 

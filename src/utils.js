@@ -10,3 +10,7 @@ export function compileTemplate (template, data) {
 
     return template;
 }
+
+export function isFunction (obj) {
+    return typeof obj === 'function';
+}
