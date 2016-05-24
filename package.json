@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rm -rf build && mkdir build",
     "build-dev": "npm run clean && browserify index.js -s d3TooltipBox > build/d3-tooltip-box.js -t [ babelify --presets [ es2015 ] ]",
-    "build-prod": "npm test && npm run build-dev && uglifyjs build/d3-tooltip-box.js -c -m -o build/d3-tooltip-box.min.js",
+    "build-prod": "npm run build-dev && uglifyjs build/d3-tooltip-box.js -c -m -o build/d3-tooltip-box.min.js && npm test",
     "start": "npm run build-dev",
     "test": "jasmine",
     "prepublish": "npm run build-prod",
