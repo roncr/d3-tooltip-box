@@ -10,7 +10,7 @@
     "start": "npm run build-dev",
     "test": "jasmine",
     "prepublish": "npm run build-prod",
-    "postpublish": "zip -j build/d3-tooltip-box.js -- LICENSE README.md build/d3-tooltip-box.js build/d3-tooltip-box.min.js"
+    "postpublish": "zip -j build/d3-tooltip-box.zip -- LICENSE README.md build/d3-tooltip-box.js build/d3-tooltip-box.min.js"
   },
   "keywords": [
     "d3",
