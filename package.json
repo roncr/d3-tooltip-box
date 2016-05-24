@@ -8,7 +8,8 @@
     "build-dev": "npm run clean && browserify index.js -s d3TooltipBox > build/d3-tooltip-box.js -t [ babelify --presets [ es2015 ] ]",
     "build-prod": "npm test && npm run build-dev && uglifyjs build/d3-tooltip-box.js -c -m -o build/d3-tooltip-box.min.js",
     "start": "npm run build-dev",
-    "prepublish": "npm run build-prod"
+    "prepublish": "npm run build-prod",
+    "postpublish": "zip -j build/d3-tooltip-box.js -- LICENSE README.md build/d3-tooltip-box.js build/d3-tooltip-box.min.js"
   },
   "keywords": [
     "d3",
