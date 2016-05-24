@@ -1,6 +1,6 @@
 {
   "name": "d3-tooltip-box",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "D3 plugin to build legendary tooltips",
   "main": "build/d3-tooltip-box.js",
   "scripts": {
@@ -31,6 +31,6 @@
     "uglifyjs": "^2.4.10"
   },
   "peerDependencies": {
-    "d3": "^3.5.0"
+    "d3": "^3.0.0"
   }
 }

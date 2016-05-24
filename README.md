@@ -4,7 +4,13 @@ Flexible D3 plugin to build legendary tooltips.
 
 ## Installation
 
-**Coming soon**. The project is still in early development, once it is more stable it will be available in npm and bower.
+####NPM
+
+If using npm just
+
+    npm instal --save-dev d3-tooltip-box
+
+This project will be available in **bower** soon.
 
 ## Usage
 
@@ -53,7 +59,7 @@ var tooltip = d3TooltipBox.tooltip()
 
 ### Dynamic Custom Template
 
-In order to build the tooltip on the fly, you can use the `.template(...)` method and provide a function, the function will be invoked with the data managed by D3 for the nodes. Check the [API Reference](#api-reference) for more.
+In order to build the tooltip on the fly, you can use the `.template(...)` method and provide a function, the function will be invoked with the associated data attached by D3 for the nodes. Check the [API Reference](#api-reference) for more.
 
 ```javascript
 var tooltip = d3TooltipBox.tooltip()
