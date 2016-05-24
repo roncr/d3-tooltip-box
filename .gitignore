@@ -3,7 +3,7 @@
 .idea
 
 /* Logs */
-*.logs
+*.log
 
 /* Libs */
 node_modules
