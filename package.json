@@ -8,6 +8,7 @@
     "build-dev": "npm run clean && browserify index.js -s d3TooltipBox > build/d3-tooltip-box.js -t [ babelify --presets [ es2015 ] ]",
     "build-prod": "npm test && npm run build-dev && uglifyjs build/d3-tooltip-box.js -c -m -o build/d3-tooltip-box.min.js",
     "start": "npm run build-dev",
+    "test": "jasmine",
     "prepublish": "npm run build-prod",
     "postpublish": "zip -j build/d3-tooltip-box.js -- LICENSE README.md build/d3-tooltip-box.js build/d3-tooltip-box.min.js"
   },
@@ -21,6 +22,7 @@
     "babel-preset-es2015": "^6.9.0",
     "babelify": "^7.3.0",
     "browserify": "^13.0.1",
+    "jasmine-node": "^1.14.5",
     "uglifyjs": "^2.4.10"
   },
   "dependencies": {
