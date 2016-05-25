@@ -90,4 +90,4 @@ Specifies the parent node of the tooltip, the default is `<body>`. *node* could 
 
 <a name="positionOffset" href="#positionOffset">#</a> tooltip().<b>positionOffset</b>([offset])
 
-Specifies the offset of the tooltip relative to the mouse position, *offset* is an object containing the *left* and *top* properties with numeric values. The default is `{left: 0, top: -30}`. If *offset* is not specified, returns the current offset.
+Specifies the offset of the tooltip relative to the mouse position, *offset* is an object containing the *left* and *top* properties with numeric values. The default is `{left: 0, top: 0}`. If *offset* is not specified, returns the current offset.
