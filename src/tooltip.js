@@ -11,7 +11,7 @@ class Tooltip {
         this._dataAccessor = (d) => d.value;
         this._template = "<div>${value}</div>";
         this._positionOffset = this._DEFAULT_POSITION_OFFSET;
-        ç = false;
+        this._visible = false;
     }
 
     _initTooltip () {
@@ -19,12 +19,6 @@ class Tooltip {
         if(tooltipEl.empty()) {
             tooltipEl = this._createTooltip();
         }
-
-        tooltipEl.on({
-            mouseover: () => this._keepOn = true,
-            mouseleave: () => this._keepOn = false
-        });
-
         return tooltipEl;
     }
 
@@ -112,11 +106,9 @@ class Tooltip {
     }
 
     hide() {
-        if(!this._keepOn){
-            this._tooltipEl
-                .transition(this._transitionSpeed)
-                .style('opacity', 0);
-        }
+        this._tooltipEl
+            .transition(this._transitionSpeed)
+            .style('opacity', 0);
     }
 
     bind() {
@@ -126,9 +118,20 @@ class Tooltip {
             selection.each(function(data) {
                 var element = d3.select(this);
 
-                element.on('mouseover.d3-tooltip-box', (d) => { self.show(d); })
+                element
+                    .on('mouseover.d3-tooltip-box', (d) => {
+                        this._visible = true;
+                        self.show(d);
+                    })
                     .on('mousemove.d3-tooltip-box', () => { self.move(); })
-                    .on('mouseleave.d3-tooltip-box', () => { self.hide(); });
+                    .on('mouseleave.d3-tooltip-box', () => {
+                        this._visible = false;
+                        setTimeout(() => {
+                            if(!this._visible){
+                                self.hide();
+                            }
+                        }, 200);
+                    });
             });
         }
     }
