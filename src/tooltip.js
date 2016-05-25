@@ -27,7 +27,8 @@ class Tooltip {
             .attr('class', this._tooltipClass)
             .style({
                 opacity: 0,
-                position: 'absolute'
+                position: 'absolute',
+                'pointer-events': 'none'
             });
     }
 
@@ -119,19 +120,9 @@ class Tooltip {
                 var element = d3.select(this);
 
                 element
-                    .on('mouseover.d3-tooltip-box', (d) => {
-                        this._visible = true;
-                        self.show(d);
-                    })
+                    .on('mouseover.d3-tooltip-box', (d) => { self.show(d); })
                     .on('mousemove.d3-tooltip-box', () => { self.move(); })
-                    .on('mouseleave.d3-tooltip-box', () => {
-                        this._visible = false;
-                        setTimeout(() => {
-                            if(!this._visible){
-                                self.hide();
-                            }
-                        }, 200);
-                    });
+                    .on('mouseleave.d3-tooltip-box', () => { self.hide(); });
             });
         }
     }
