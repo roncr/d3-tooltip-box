@@ -11,6 +11,7 @@ class Tooltip {
         this._dataAccessor = (d) => d.value;
         this._template = "<div>${value}</div>";
         this._positionOffset = this._DEFAULT_POSITION_OFFSET;
+        ç = false;
     }
 
     _initTooltip () {
@@ -18,6 +19,12 @@ class Tooltip {
         if(tooltipEl.empty()) {
             tooltipEl = this._createTooltip();
         }
+
+        tooltipEl.on({
+            mouseover: () => this._keepOn = true,
+            mouseleave: () => this._keepOn = false
+        });
+
         return tooltipEl;
     }
 
@@ -105,9 +112,11 @@ class Tooltip {
     }
 
     hide() {
-        this._tooltipEl
-            .transition(this._transitionSpeed)
-            .style('opacity', 0);
+        if(!this._keepOn){
+            this._tooltipEl
+                .transition(this._transitionSpeed)
+                .style('opacity', 0);
+        }
     }
 
     bind() {
