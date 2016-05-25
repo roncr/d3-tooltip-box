@@ -8,7 +8,7 @@ Flexible D3 plugin to build legendary tooltips.
 
 If using npm just
 
-    npm instal --save-dev d3-tooltip-box
+    npm install --save-dev d3-tooltip-box
 
 This project will be available in **bower** soon.
 

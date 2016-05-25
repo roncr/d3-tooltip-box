@@ -3,7 +3,7 @@ import { formatPx, compileTemplate, isFunction, isD3Selection } from './utils';
 // Inspired by on http://bl.ocks.org/mbostock/1087001
 class Tooltip {
     constructor() {
-        this._DEFAULT_POSITION_OFFSET = {left: 0, top: -30};
+        this._DEFAULT_POSITION_OFFSET = {left: 0, top: 0};
 
         this._tooltipClass = 'd3-tooltip-box';
         this._transitionSpeed = 200;
@@ -95,10 +95,12 @@ class Tooltip {
     }
 
     move() {
+        let clientRect = this._tooltipEl.node().getBoundingClientRect();
+
         this._tooltipEl
             .style({
                 left: formatPx(d3.event.pageX + this._positionOffset.left),
-                top: formatPx(d3.event.pageY + this._positionOffset.top)
+                top: formatPx(d3.event.pageY - clientRect.height + this._positionOffset.top)
             });
     }
 

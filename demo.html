@@ -46,7 +46,7 @@
                 .parent(d3.select('.wrapper'))
                 .positionOffset({left: 5})
                 .template(function(d) {
-                    return '<div>Amount: '+ d.value +'</div>';
+                    return '<div>Amount: '+ d.value +'</div><div>Description</div>';
                 });
 
         var svg = d3.select("svg")
