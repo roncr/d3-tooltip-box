@@ -22,7 +22,7 @@
     <script>
 
         var width = 960,
-                height = 500;
+            height = 500;
 
 //        // Alternative 1
 //        var tooltip = d3TooltipBox.tooltip()
@@ -41,12 +41,24 @@
 //                })
 //                .template('<div>Value: ${value}</div>');
 
-        // Alternative 3
+//        // Alternative 3
+//        var tooltip = d3TooltipBox.tooltip()
+//                .parent(d3.select('.wrapper'))
+//                .positionOffset({left: 5})
+//                .template(function(d) {
+//                    return '<div>Amount: '+ d.value +'</div><div>Description</div>';
+//                });
+
+        // Alternative 4
+        d3TooltipBox.config({
+            template: '<div>Count: ${count}</div>'
+        });
+
         var tooltip = d3TooltipBox.tooltip()
-                .parent(d3.select('.wrapper'))
-                .positionOffset({left: 5})
-                .template(function(d) {
-                    return '<div>Amount: '+ d.value +'</div><div>Description</div>';
+                .data(function() {
+                    return {
+                        count: 42
+                    }
                 });
 
         var svg = d3.select("svg")

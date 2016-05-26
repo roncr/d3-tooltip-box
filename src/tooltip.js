@@ -1,3 +1,4 @@
+import { configuration } from './config';
 import { formatPx, compileTemplate, isFunction, isD3Selection } from './utils';
 
 /**
@@ -14,7 +15,7 @@ class Tooltip {
         this._transitionSpeed = 200;
         this._parent = d3.select('body');
         this._dataAccessor = (d) => d.value;
-        this._template = "<div>${value}</div>";
+        this._template = configuration.template();
         this._positionOffset = this._DEFAULT_POSITION_OFFSET;
     }
 
