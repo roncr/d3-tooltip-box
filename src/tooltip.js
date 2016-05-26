@@ -1,19 +1,30 @@
 import { formatPx, compileTemplate, isFunction, isD3Selection } from './utils';
 
-// Inspired by on http://bl.ocks.org/mbostock/1087001
+/**
+ * D3 tooltip plugin
+ * Inspired by on http://bl.ocks.org/mbostock/1087001
+ */
 class Tooltip {
     constructor() {
+        // Constants
         this._DEFAULT_POSITION_OFFSET = {left: 0, top: 0};
 
+        // Variables
         this._tooltipClass = 'd3-tooltip-box';
         this._transitionSpeed = 200;
         this._parent = d3.select('body');
         this._dataAccessor = (d) => d.value;
         this._template = "<div>${value}</div>";
         this._positionOffset = this._DEFAULT_POSITION_OFFSET;
-        this._visible = false;
     }
 
+    /**
+     * Initializes the tooltip container, if there is already
+     * a container, reuses the same tooltip, otherwise creates
+     * a new <div> container
+     * @returns {d3.selection} tooltip container
+     * @private
+     */
     _initTooltip () {
         let tooltipEl = d3.select(`.${this._tooltipClass}`);
         if(tooltipEl.empty()) {
@@ -22,6 +33,11 @@ class Tooltip {
         return tooltipEl;
     }
 
+    /**
+     * Creates a new <div> as the container of the tooltip
+     * @returns {d3.selection} new tooltip container 
+     * @private
+     */
     _createTooltip () {
         return this.parent().append('div')
             .attr('class', this._tooltipClass)
@@ -32,6 +48,14 @@ class Tooltip {
             });
     }
 
+    /**
+     * Gets the content of the tooltip by either
+     * compiling a static template or invoking the
+     * function of a dynamic template
+     * @param d the associated data
+     * @returns {ELEMENT_NODE} content of the tooltip as HTML
+     * @private
+     */
     _getContent (d) {
         var template = this._template;
         if(isFunction(template)) {
@@ -42,6 +66,12 @@ class Tooltip {
         }
     }
 
+    /**
+     * Parent getter/setter
+     * @param v the parent to set
+     * @returns {d3.selection} the current parent (returned only if
+     * invoked with no parameters)
+     */
     parent(v) {
         if(arguments.length == 0) {
             return this._parent;
@@ -54,6 +84,13 @@ class Tooltip {
         return this;
     }
 
+    /**
+     * Position offset getter/setter, the offset must
+     * be in the shape of {left: 0, top: 0}
+     * @param v the offset to set
+     * @returns {Object} current offset (returned only if invoked with
+     * not parameters)
+     */
     positionOffset(v) {
         if(arguments.length == 0) {
             return this._positionOffset;
@@ -63,6 +100,12 @@ class Tooltip {
         return this;
     }
 
+    /**
+     * Data accessor getter/setter
+     * @param v the accessor function to set
+     * @returns {Function} the current accessor function (returned only if
+     * invoked with no parameters)
+     */
     data(v) {
         if(arguments.length == 0) {
             return this._dataAccessor;
@@ -72,6 +115,14 @@ class Tooltip {
         return this;
     }
 
+    /**
+     * Template getter/setter
+     * @param v the template to set, if string it is considered
+     * static template, if function it is considered dynamic template
+     * and will be invoked with the associated data as parameter
+     * @returns {*} the current template string or factory function
+     * (returned only if invoked with no parameters)
+     */
     template(v) {
         if(arguments.length == 0) {
             return this._template;
@@ -81,6 +132,10 @@ class Tooltip {
         return this;
     }
 
+    /**
+     * Makes the tooltip visible
+     * @param d the associated data of the selection
+     */
     show(d) {
         if(!this._tooltipEl) {
             this._tooltipEl = this._initTooltip();
@@ -96,6 +151,9 @@ class Tooltip {
             .style("opacity", 1);
     }
 
+    /**
+     * Moves the tooltip to the mouse position
+     */
     move() {
         let clientRect = this._tooltipEl.node().getBoundingClientRect();
 
@@ -106,12 +164,21 @@ class Tooltip {
             });
     }
 
+    /**
+     * Hides the tooltip
+     */
     hide() {
         this._tooltipEl
             .transition(this._transitionSpeed)
             .style('opacity', 0);
     }
 
+    /**
+     * Attaches the tooltip event listeners to
+     * the current selection
+     * @returns {Function} function to be used for the
+     * d3.selection.call method
+     */
     bind() {
         let self = this;
 
@@ -129,6 +196,10 @@ class Tooltip {
 
 }
 
+/**
+ * Tooltip factory, creates new instances of the tooltip
+ * @returns {Tooltip} the new tooltip instance
+ */
 export default function tooltip() {
     var instance = new Tooltip();
     return instance;

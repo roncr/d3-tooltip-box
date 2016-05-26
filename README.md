@@ -8,7 +8,7 @@ Flexible D3 plugin to build legendary tooltips.
 
 If using npm just
 
-    npm install --save-dev d3-tooltip-box
+    npm install --save d3-tooltip-box
 
 This project will be available in **bower** soon.
 
@@ -80,7 +80,7 @@ Specifies how to extract a value from the associated data. *accessor* is a funct
 
 <a name="template" href="#template">#</a> tooltip().<b>template</b>([template])
 
-Specifies the template to be used, if *template* is a **string**, it is considered a static template, meaning the structure is not going to change, only the values shown by it, the static template can use the syntax *${propertyName}* to define placeholders, the static template will be compiled using the data defined through the `.data(...)` method, the name properties used in the template must match the properties in the data object in order to be compiled properly. The static templates are convenient for less and more easy to read code.
+Specifies the template to be used, if *template* is a **string**, it is considered a static template, meaning the structure is not going to change, only the values shown by it, the static template can use the syntax *${propertyName}* to define placeholders, the template will be compiled using the data obtained from the `.data(...)` method, the placeholders used in the template must match the properties in the data object in order to compile the template properly. The static templates are convenient for less and more easy to read code.
 
 If *template* is a **function**, it is considered a dynamic template that can change in content and structure, the function will be invoked with data attached to node as D3 always does, hence this function as to define an HTML output that will be placed verbatim in the tooltip. If *template* is not provided, returns the current template.
 
