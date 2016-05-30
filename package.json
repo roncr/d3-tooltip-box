@@ -31,6 +31,6 @@
     "uglifyjs": "^2.4.10"
   },
   "peerDependencies": {
-    "d3": "^3.0.0"
+    "d3": "^3.x"
   }
 }
