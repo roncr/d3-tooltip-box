@@ -23,6 +23,8 @@ Once the initial configuration is completed, you can bind the tooltip to an SVG 
 Example:
 
 ```javascript
+import d3TooltipBox from 'd3-tooltip-box';
+//
 var width = 960,
     height = 500;
 //
