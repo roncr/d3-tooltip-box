@@ -1,0 +1,27 @@
+{
+  "name": "d3-tooltip-box",
+  "version": "0.0.5",
+  "description": "D3 plugin to build legendary tooltips",
+  "main": "build/d3-tooltip-box.js",
+  "authors": [
+    "roncr"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "d3",
+    "tooltip"
+  ],
+  "homepage": "https://github.com/roncr/d3-tooltip-box",
+  "moduleType": [
+    "amd",
+    "es6",
+    "globals",
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "spec"
+  ]
+}

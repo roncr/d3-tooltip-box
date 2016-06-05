@@ -4,13 +4,13 @@ Flexible D3 plugin to build legendary tooltips.
 
 ## Installation
 
-####NPM
-
-If using npm just
+#### NPM
 
     npm install --save d3-tooltip-box
 
-This project will be available in **bower** soon.
+#### Bower
+
+    bower install --save d3-tooltip-box
 
 ## Usage
 

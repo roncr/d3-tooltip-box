@@ -33,13 +33,13 @@
 //                });
 
 //        // Alternative 2
-//        var tooltip = d3TooltipBox.tooltip()
-//                .data(function() {
-//                    return {
-//                        value: 20
-//                    }
-//                })
-//                .template('<div>Value: ${value}</div>');
+        var tooltip = d3TooltipBox.tooltip()
+                .data(function() {
+                    return {
+                        value: 20
+                    }
+                })
+                .template('<div>Value: ${value}</div>');
 
 //        // Alternative 3
 //        var tooltip = d3TooltipBox.tooltip()
@@ -50,16 +50,16 @@
 //                });
 
         // Alternative 4
-        d3TooltipBox.config({
-            template: '<div>Count: ${count}</div>'
-        });
+//        d3TooltipBox.config({
+//            template: '<div>Count: ${count}</div>'
+//        });
 
-        var tooltip = d3TooltipBox.tooltip()
-                .data(function() {
-                    return {
-                        count: 42
-                    }
-                });
+//        var tooltip = d3TooltipBox.tooltip()
+//                .data(function() {
+//                    return {
+//                        count: 42
+//                    }
+//                });
 
         var svg = d3.select("svg")
                 .attr("width", width)
