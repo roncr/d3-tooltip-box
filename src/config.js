@@ -1,7 +1,7 @@
 class TooltipConfig {
     constructor() {
         this._DEFAULT_CONFIG = {
-          template:  "<div>${value}</div>"
+          template:  "<div>@{value}</div>"
         };
         this._config = this._DEFAULT_CONFIG;
     }
